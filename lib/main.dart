@@ -1,16 +1,13 @@
-import 'package:cinema_ai/pages/Genres.dart';
-import 'package:cinema_ai/pages/HomePage.dart';
-import 'package:cinema_ai/pages/Profile.dart';
 import 'package:cinema_ai/providers/PageIndexProvider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
 
-import 'BottomNav.dart';
 import 'MainScreen.dart';
-import 'bottomNav.dart';
 
-void main() {
-  runApp(MyApp());
+Future<void> main() async {
+  await dotenv.load(fileName: "lib/.env");
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
