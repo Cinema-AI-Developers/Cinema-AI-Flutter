@@ -46,52 +46,54 @@ class _ChatScreenState extends State<Chat> {
         title: const Text("Чатик :3"),
       ),
       body: SafeArea(
-          child: Column(
-        children: [
-          Flexible(
-            child: ListView.builder(
-                itemCount: chatList.length,
-                itemBuilder: (context, index) => ChatWidget(
-                      msg: chatList[index].msg,
-                      chatIndex: chatList[index].chatIndex,
-                    )),
-          ),
-          if (_isTyping) ...[
-            const SpinKitThreeBounce(color: Colors.black, size: 18),
-          ],
-          const SizedBox(
-            height: 15,
-          ),
-          Material(
-            color: Colors.white,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: TextField(
-                      focusNode: focusNode,
-                      style: const TextStyle(color: Colors.black),
-                      controller: textEditingController,
-                      onSubmitted: (value) async {
-                        await sendMessageFCT(modelsProvider: modelsProvider);
-                      },
-                      decoration: const InputDecoration.collapsed(
-                          hintText: "Меня зовут Дэвид. Как я могу помочь вам?",
-                          hintStyle: TextStyle(color: Colors.grey)),
+        child: Column(
+          children: [
+            Flexible(
+              child: ListView.builder(
+                  itemCount: chatList.length,
+                  itemBuilder: (context, index) => ChatWidget(
+                        msg: chatList[index].msg,
+                        chatIndex: chatList[index].chatIndex,
+                      )),
+            ),
+            if (_isTyping) ...[
+              const SpinKitThreeBounce(color: Colors.black, size: 18),
+            ],
+            const SizedBox(
+              height: 15,
+            ),
+            Material(
+              color: Colors.white,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: TextField(
+                        focusNode: focusNode,
+                        style: const TextStyle(color: Colors.black),
+                        controller: textEditingController,
+                        onSubmitted: (value) async {
+                          await sendMessageFCT(modelsProvider: modelsProvider);
+                        },
+                        decoration: const InputDecoration.collapsed(
+                            hintText:
+                                "Меня зовут Дэвид. Как я могу помочь вам?",
+                            hintStyle: TextStyle(color: Colors.grey)),
+                      ),
                     ),
-                  ),
-                  IconButton(
-                      onPressed: () async {
-                        await sendMessageFCT(modelsProvider: modelsProvider);
-                      },
-                      icon: const Icon(Icons.send))
-                ],
+                    IconButton(
+                        onPressed: () async {
+                          await sendMessageFCT(modelsProvider: modelsProvider);
+                        },
+                        icon: const Icon(Icons.send))
+                  ],
+                ),
               ),
             ),
-          )
-        ],
-      )),
+          ],
+        ),
+      ),
     );
   }
 
@@ -116,9 +118,9 @@ class _ChatScreenState extends State<Chat> {
     } catch (error) {
       log("$error");
     } finally {
-      setState(() {
-        _isTyping = false;
-      });
+      setState(
+        () => _isTyping = false,
+      );
     }
   }
 }

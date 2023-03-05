@@ -1,6 +1,6 @@
 import 'package:cinema_ai/pages/HomePage.dart';
 import 'package:cinema_ai/pages/Profile.dart';
-import 'package:cinema_ai/pages/Chat.dart';
+import 'package:cinema_ai/pages/ChatPage.dart';
 import 'package:cinema_ai/providers/PageIndexProvider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
