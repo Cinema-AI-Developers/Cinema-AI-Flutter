@@ -1,5 +1,5 @@
 import 'package:cinema_ai/Models/AIModel.dart';
-import 'package:cinema_ai/api/AIModelResponse.dart';
+import 'package:cinema_ai/api/AIResponse.dart';
 import 'package:flutter/cupertino.dart';
 
 class ModelsProvider with ChangeNotifier {

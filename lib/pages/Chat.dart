@@ -1,9 +1,13 @@
+import 'dart:developer';
+
 import 'package:cinema_ai/Constants/chatMessages.dart';
-import 'package:cinema_ai/api/AIModelResponse.dart';
+import 'package:cinema_ai/api/AIResponse.dart';
 import 'package:cinema_ai/Widgets/chatWidget.dart';
+import 'package:cinema_ai/providers/ModelsProvider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:provider/provider.dart';
 
 class Chat extends StatefulWidget {
   const Chat({super.key});
@@ -13,7 +17,7 @@ class Chat extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<Chat> {
-  bool _isTyping = true;
+  bool _isTyping = false;
   late TextEditingController textEditingController;
   @override
   void initState() {
@@ -29,6 +33,7 @@ class _ChatScreenState extends State<Chat> {
 
   @override
   Widget build(BuildContext context) {
+    final modelsProvider = Provider.of<ModelsProvider>(context);
     return Scaffold(
       appBar: AppBar(
         elevation: 2,
@@ -49,43 +54,51 @@ class _ChatScreenState extends State<Chat> {
           ),
           if (_isTyping) ...[
             const SpinKitThreeBounce(color: Colors.black, size: 18),
-            const SizedBox(
-              height: 15,
-            ),
-            Material(
-              color: Colors.white,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: TextField(
-                        style: const TextStyle(color: Colors.black),
-                        controller: textEditingController,
-                        onSubmitted: (value) {
-                          //TODO send message
-                        },
-                        decoration: const InputDecoration.collapsed(
-                            hintText:
-                                "Меня зовут Дэвид. Как я могу помочь вам?",
-                            hintStyle: TextStyle(color: Colors.grey)),
-                      ),
+          ],
+          const SizedBox(
+            height: 15,
+          ),
+          Material(
+            color: Colors.white,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      style: const TextStyle(color: Colors.black),
+                      controller: textEditingController,
+                      onSubmitted: (value) {
+                        //TODO send message
+                      },
+                      decoration: const InputDecoration.collapsed(
+                          hintText: "Меня зовут Дэвид. Как я могу помочь вам?",
+                          hintStyle: TextStyle(color: Colors.grey)),
                     ),
-                    IconButton(
-                        onPressed: () async {
-                          //TODO make normal
-                          try {
-                            await AIModelResponse.getModel();
-                          } catch (error) {
-                            print(error);
-                          }
-                        },
-                        icon: const Icon(Icons.send))
-                  ],
-                ),
+                  ),
+                  IconButton(
+                      onPressed: () async {
+                        //TODO make normal
+                        try {
+                          setState(() {
+                            _isTyping = true;
+                          });
+                          final list = await AIModelResponse.sendMessage(
+                              message: textEditingController.text,
+                              modelId: modelsProvider.getCurrentModel);
+                        } catch (error) {
+                          log("$error");
+                        } finally {
+                          setState(() {
+                            _isTyping = false;
+                          });
+                        }
+                      },
+                      icon: const Icon(Icons.send))
+                ],
               ),
-            )
-          ]
+            ),
+          )
         ],
       )),
     );
