@@ -1,3 +1,4 @@
+import 'package:cinema_ai/providers/ModelsProvider.dart';
 import 'package:cinema_ai/providers/PageIndexProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -17,7 +18,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => PageIndexProvider()),
+        ChangeNotifierProvider(
+          create: (context) => PageIndexProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => ModelsProvider(),
+        ),
       ],
       child: MaterialApp(
         title: 'Cinema AI',
