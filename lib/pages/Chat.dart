@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:cinema_ai/Constants/chatMessages.dart';
-import 'package:cinema_ai/Models/ChatModel.dart';
 import 'package:cinema_ai/api/AIResponse.dart';
 import 'package:cinema_ai/Widgets/chatWidget.dart';
 import 'package:cinema_ai/providers/ModelsProvider.dart';
@@ -20,22 +19,17 @@ class Chat extends StatefulWidget {
 class _ChatScreenState extends State<Chat> {
   bool _isTyping = false;
   late TextEditingController textEditingController;
-  late FocusNode focusNode;
   @override
   void initState() {
-    focusNode = FocusNode();
     textEditingController = TextEditingController();
     super.initState();
   }
 
   @override
   void dispose() {
-    focusNode.dispose();
     textEditingController.dispose();
     super.dispose();
   }
-
-  List<ChatModel> chatList = [];
 
   @override
   Widget build(BuildContext context) {
@@ -50,10 +44,12 @@ class _ChatScreenState extends State<Chat> {
         children: [
           Flexible(
             child: ListView.builder(
-                itemCount: chatList.length,
+                itemCount: 6,
                 itemBuilder: (context, index) => ChatWidget(
-                      msg: chatList[index].msg,
-                      chatIndex: chatList[index].chatIndex,
+                      //TODO API integration
+                      msg: chatMessages[index]["msg"].toString(),
+                      chatIndex: int.parse(
+                          chatMessages[index]["chatIndex"].toString()),
                     )),
           ),
           if (_isTyping) ...[
@@ -70,11 +66,10 @@ class _ChatScreenState extends State<Chat> {
                 children: [
                   Expanded(
                     child: TextField(
-                      focusNode: focusNode,
                       style: const TextStyle(color: Colors.black),
                       controller: textEditingController,
-                      onSubmitted: (value) async {
-                        await sendMessageFCT(modelsProvider: modelsProvider);
+                      onSubmitted: (value) {
+                        //TODO send message
                       },
                       decoration: const InputDecoration.collapsed(
                           hintText: "Меня зовут Дэвид. Как я могу помочь вам?",
@@ -83,7 +78,21 @@ class _ChatScreenState extends State<Chat> {
                   ),
                   IconButton(
                       onPressed: () async {
-                        await sendMessageFCT(modelsProvider: modelsProvider);
+                        //TODO make normal
+                        try {
+                          setState(() {
+                            _isTyping = true;
+                          });
+                          final list = await AIModelResponse.sendMessage(
+                              message: textEditingController.text,
+                              modelId: modelsProvider.getCurrentModel);
+                        } catch (error) {
+                          log("$error");
+                        } finally {
+                          setState(() {
+                            _isTyping = false;
+                          });
+                        }
                       },
                       icon: const Icon(Icons.send))
                 ],
@@ -93,30 +102,5 @@ class _ChatScreenState extends State<Chat> {
         ],
       )),
     );
-  }
-
-  Future<void> sendMessageFCT({
-    required ModelsProvider modelsProvider,
-  }) async {
-    //TODO make normal
-    try {
-      setState(() {
-        _isTyping = true;
-        chatList.add(ChatModel(msg: textEditingController.text, chatIndex: 0));
-        textEditingController.clear();
-        focusNode.unfocus();
-      });
-      chatList.addAll(await AIModelResponse.sendMessage(
-        message: textEditingController.text,
-        modelId: modelsProvider.getCurrentModel,
-      ));
-      setState(() {});
-    } catch (error) {
-      log("$error");
-    } finally {
-      setState(() {
-        _isTyping = false;
-      });
-    }
   }
 }
