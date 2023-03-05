@@ -1,5 +1,9 @@
 import 'package:cinema_ai/Constants/chatMessages.dart';
+<<<<<<< HEAD
 import 'package:cinema_ai/api/AIModelResponse.dart';
+=======
+import 'package:cinema_ai/Services/AIModelResponse.dart';
+>>>>>>> chat-integration
 import 'package:cinema_ai/Widgets/chatWidget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
