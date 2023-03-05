@@ -5,8 +5,7 @@ import 'package:cinema_ai/providers/PageIndexProvider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import '../bottomNav.dart';
+import 'Widgets/BottomNav.dart';
 
 class MainScreen extends StatelessWidget {
   MainScreen({super.key});
