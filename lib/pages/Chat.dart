@@ -100,14 +100,16 @@ class _ChatScreenState extends State<Chat> {
   }) async {
     //TODO make normal
     try {
+      String temp = "";
       setState(() {
         _isTyping = true;
         chatList.add(ChatModel(msg: textEditingController.text, chatIndex: 0));
+        temp = textEditingController.text;
         textEditingController.clear();
         focusNode.unfocus();
       });
       chatList.addAll(await AIModelResponse.sendMessage(
-        message: textEditingController.text,
+        message: temp,
         modelId: modelsProvider.getCurrentModel,
       ));
       setState(() {});
