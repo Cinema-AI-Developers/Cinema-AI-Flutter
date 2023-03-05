@@ -1,3 +1,5 @@
+import 'package:cinema_ai/Constants/chatMessages.dart';
+import 'package:cinema_ai/Widgets/chatWidget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -36,7 +38,13 @@ class _ChatScreenState extends State<Chat> {
         children: [
           Flexible(
             child: ListView.builder(
-                itemCount: 6, itemBuilder: (context, index) => Text("Chat")),
+                itemCount: 6,
+                itemBuilder: (context, index) => ChatWidget(
+                      //TODO API integration
+                      msg: chatMessages[index]["msg"].toString(),
+                      chatIndex: int.parse(
+                          chatMessages[index]["chatIndex"].toString()),
+                    )),
           ),
           if (_isTyping) ...[
             const SpinKitThreeBounce(color: Colors.black, size: 18),
@@ -57,7 +65,8 @@ class _ChatScreenState extends State<Chat> {
                           //TODO send message
                         },
                         decoration: const InputDecoration.collapsed(
-                            hintText: "Меня зовут Лиза. Как я могу помочь вам?",
+                            hintText:
+                                "Меня зовут Дэвид. Как я могу помочь вам?",
                             hintStyle: TextStyle(color: Colors.grey)),
                       ),
                     ),
