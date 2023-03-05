@@ -1,4 +1,5 @@
 import 'package:cinema_ai/Constants/chatMessages.dart';
+import 'package:cinema_ai/api/AIModelResponse.dart';
 import 'package:cinema_ai/Widgets/chatWidget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -70,7 +71,16 @@ class _ChatScreenState extends State<Chat> {
                             hintStyle: TextStyle(color: Colors.grey)),
                       ),
                     ),
-                    IconButton(onPressed: () {}, icon: const Icon(Icons.send))
+                    IconButton(
+                        onPressed: () async {
+                          //TODO make normal
+                          try {
+                            await AIModelResponse.getModel();
+                          } catch (error) {
+                            print(error);
+                          }
+                        },
+                        icon: const Icon(Icons.send))
                   ],
                 ),
               ),
