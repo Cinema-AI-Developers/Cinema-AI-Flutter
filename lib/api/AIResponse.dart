@@ -18,7 +18,7 @@ class AIModelResponse {
         },
       );
 
-      Map jsonResponse = jsonDecode(response.body);
+      Map jsonResponse = jsonDecode(utf8.decode(response.bodyBytes));
       if (jsonResponse['error'] != null) {
         print("jsonResponse['error'] ${jsonResponse['error']['message']}");
         throw HttpException(jsonResponse['error']['message']);
@@ -52,7 +52,7 @@ class AIModelResponse {
         ),
       );
 
-      Map jsonResponse = jsonDecode(response.body);
+      Map jsonResponse = jsonDecode(utf8.decode(response.bodyBytes));
       if (jsonResponse['error'] != null) {
         print("jsonResponse['error'] ${jsonResponse['error']['message']}");
         throw HttpException(jsonResponse['error']['message']);
@@ -60,7 +60,7 @@ class AIModelResponse {
       List<ChatModel> chatList = [];
 
       if (jsonResponse["choices"].length > 0) {
-        // log("jsonResponse[choices]text ${jsonResponse["choices"][0]["text"]}");
+        log("jsonResponse[choices]text ${jsonResponse["choices"][0]["text"]}");
         chatList = List.generate(
           jsonResponse["choices"].length,
           (index) => ChatModel(
