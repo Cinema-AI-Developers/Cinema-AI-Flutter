@@ -18,11 +18,13 @@ class Chat extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<Chat> {
+  late ScrollController _listScrollController;
   bool _isTyping = false;
   late TextEditingController textEditingController;
   late FocusNode focusNode;
   @override
   void initState() {
+    _listScrollController = ScrollController();
     focusNode = FocusNode();
     textEditingController = TextEditingController();
     super.initState();
@@ -30,6 +32,7 @@ class _ChatScreenState extends State<Chat> {
 
   @override
   void dispose() {
+    _listScrollController.dispose();
     focusNode.dispose();
     textEditingController.dispose();
     super.dispose();
@@ -50,6 +53,7 @@ class _ChatScreenState extends State<Chat> {
           children: [
             Flexible(
               child: ListView.builder(
+                  controller: _listScrollController,
                   itemCount: chatList.length,
                   itemBuilder: (context, index) => ChatWidget(
                         msg: chatList[index].msg,
@@ -83,10 +87,11 @@ class _ChatScreenState extends State<Chat> {
                       ),
                     ),
                     IconButton(
-                        onPressed: () async {
-                          await sendMessageFCT(modelsProvider: modelsProvider);
-                        },
-                        icon: const Icon(Icons.send))
+                      onPressed: () async {
+                        await sendMessageFCT(modelsProvider: modelsProvider);
+                      },
+                      icon: const Icon(Icons.send),
+                    ),
                   ],
                 ),
               ),
@@ -97,29 +102,43 @@ class _ChatScreenState extends State<Chat> {
     );
   }
 
+  void scrollListToEnd() {
+    _listScrollController.animateTo(
+        _listScrollController.position.maxScrollExtent,
+        duration: const Duration(seconds: 2),
+        curve: Curves.easeInOut);
+  }
+
   Future<void> sendMessageFCT({
     required ModelsProvider modelsProvider,
   }) async {
-    //TODO make normal
     try {
       String temp = "";
-      setState(() {
-        _isTyping = true;
-        chatList.add(ChatModel(msg: textEditingController.text, chatIndex: 0));
-        temp = textEditingController.text;
-        textEditingController.clear();
-        focusNode.unfocus();
-      });
-      chatList.addAll(await AIModelResponse.sendMessage(
-        message: temp,
-        modelId: modelsProvider.getCurrentModel,
-      ));
+      setState(
+        () {
+          _isTyping = true;
+          chatList
+              .add(ChatModel(msg: textEditingController.text, chatIndex: 0));
+          temp = textEditingController.text;
+          textEditingController.clear();
+          focusNode.unfocus();
+        },
+      );
+      chatList.addAll(
+        await AIModelResponse.sendMessage(
+          message: temp,
+          modelId: modelsProvider.getCurrentModel,
+        ),
+      );
       setState(() {});
     } catch (error) {
       log("$error");
     } finally {
       setState(
-        () => _isTyping = false,
+        () {
+          scrollListToEnd();
+          _isTyping = false;
+        },
       );
     }
   }
