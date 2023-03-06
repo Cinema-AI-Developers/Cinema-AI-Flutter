@@ -48,7 +48,7 @@ class _ChatScreenState extends State<Chat> {
     return Scaffold(
       appBar: AppBar(
         elevation: 2,
-        title: const Text("Чатик :3"),
+        title: const Text("Чатик ^_____^"),
       ),
       body: SafeArea(
         child: Column(
@@ -82,7 +82,7 @@ class _ChatScreenState extends State<Chat> {
                         style: const TextStyle(color: Colors.black),
                         controller: textEditingController,
                         onSubmitted: (value) async {
-                          await sendMessageFCT(
+                          await sendMessage(
                             modelsProvider: modelsProvider,
                             chatProvider: chatProvider,
                           );
@@ -95,7 +95,7 @@ class _ChatScreenState extends State<Chat> {
                     ),
                     IconButton(
                       onPressed: () async {
-                        await sendMessageFCT(
+                        await sendMessage(
                           modelsProvider: modelsProvider,
                           chatProvider: chatProvider,
                         );
@@ -119,10 +119,22 @@ class _ChatScreenState extends State<Chat> {
         curve: Curves.easeInOut);
   }
 
-  Future<void> sendMessageFCT({
+  Future<void> sendMessage({
     required ModelsProvider modelsProvider,
     required ChatProvider chatProvider,
   }) async {
+    if (_isTyping) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: TextWidget(
+            label: "Подождите, пока запрос обработается 😃",
+            color: Colors.white,
+          ),
+          backgroundColor: Colors.red,
+        ),
+      );
+      return;
+    }
     if (textEditingController.text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -136,22 +148,19 @@ class _ChatScreenState extends State<Chat> {
       return;
     }
     try {
-      String temp = "";
+      String msg = textEditingController.text;
       setState(
         () {
           _isTyping = true;
-          chatProvider.addUserMessage(msg: textEditingController.text);
-
+          chatProvider.addUserMessage(msg: msg);
           // chatList
           //     .add(ChatModel(msg: textEditingController.text, chatIndex: 0));
-
-          temp = textEditingController.text;
           textEditingController.clear();
           focusNode.unfocus();
         },
       );
       await chatProvider.sendMessageAndGetAnswers(
-        msg: textEditingController.text,
+        msg: msg,
         chosenModelId: modelsProvider.getCurrentModel,
       );
       // chatList.addAll(
