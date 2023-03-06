@@ -91,13 +91,13 @@ class AIModelResponse {
             "model": modelId,
             "messages": [
               {
-                "role": "user",
-                "content": message,
-              },
-              {
                 "role": "assistant",
                 "content":
                     "Веди себя как Дэвид, помощник в подборке фильмов в приложении CinemaAI.",
+              },
+              {
+                "role": "user",
+                "content": message,
               },
             ],
           },
