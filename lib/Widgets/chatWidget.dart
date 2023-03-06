@@ -42,10 +42,10 @@ class ChatWidget extends StatelessWidget {
                             isRepeatingAnimation: false,
                             repeatForever: false,
                             displayFullTextOnTap: true,
-                            totalRepeatCount: 1,
+                            totalRepeatCount: 0,
                             animatedTexts: [
                               TyperAnimatedText(msg.trim(),
-                                  speed: const Duration(milliseconds: 10)),
+                                  speed: const Duration(milliseconds: 0)),
                             ],
                           ),
                         ),
