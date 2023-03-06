@@ -4,8 +4,8 @@ import 'package:flutter/cupertino.dart';
 
 class ModelsProvider with ChangeNotifier {
   //maybe well needed in film descriptions
-  String currentModel = "text-davinci-003";
-  //String currentModel = "gpt-3.5-turbo-0301";
+  // String currentModel = "text-davinci-003";
+  String currentModel = "gpt-3.5-turbo";
 
   String get getCurrentModel {
     return currentModel;

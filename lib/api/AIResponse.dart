@@ -75,4 +75,53 @@ class AIModelResponse {
       rethrow;
     }
   }
+
+  static Future<List<ChatModel>> sendMessageGPT(
+      {required String message, required String modelId}) async {
+    try {
+      log("modelId $modelId");
+      var response = await http.post(
+        Uri.parse("https://api.openai.com/v1/chat/completions"),
+        headers: {
+          'Authorization': 'Bearer ${dotenv.env['OPENAI_API'].toString()}',
+          "Content-Type": "application/json"
+        },
+        body: jsonEncode(
+          {
+            "model": modelId,
+            "messages": [
+              {
+                "role": "user",
+                "content": message,
+              },
+              {
+                "role": "assistant",
+                "content":
+                    "Веди себя как Дэвид, помощник в подборке фильмов в приложении CinemaAI",
+              },
+            ],
+          },
+        ),
+      );
+
+      Map jsonResponse = jsonDecode(utf8.decode(response.bodyBytes));
+      if (jsonResponse['error'] != null) {
+        throw HttpException(jsonResponse['error']["message"]);
+      }
+      List<ChatModel> chatList = [];
+      if (jsonResponse["choices"].length > 0) {
+        chatList = List.generate(
+          jsonResponse["choices"].length,
+          (index) => ChatModel(
+            msg: jsonResponse["choices"][index]["message"]["content"],
+            chatIndex: 1,
+          ),
+        );
+      }
+      return chatList;
+    } catch (error) {
+      log("error $error");
+      rethrow;
+    }
+  }
 }
