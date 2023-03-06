@@ -1,6 +1,4 @@
 import 'dart:developer';
-
-import 'package:cinema_ai/Constants/chatMessages.dart';
 import 'package:cinema_ai/Models/ChatModel.dart';
 import 'package:cinema_ai/Widgets/textWidget.dart';
 import 'package:cinema_ai/api/AIResponse.dart';
