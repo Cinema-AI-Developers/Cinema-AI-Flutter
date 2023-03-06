@@ -174,6 +174,7 @@ class _ChatScreenState extends State<Chat> {
         SnackBar(
           content: TextWidget(
             label: error.toString(),
+            color: Colors.white,
           ),
           backgroundColor: Colors.red,
         ),
