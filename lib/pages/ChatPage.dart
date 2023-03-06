@@ -63,11 +63,11 @@ class _ChatScreenState extends State<Chat> {
                       )),
             ),
             if (_isTyping) ...[
-              const SpinKitThreeBounce(color: Colors.black, size: 18),
+              const Material(
+                color: Colors.white,
+                child: SpinKitThreeBounce(color: Colors.black, size: 18),
+              ),
             ],
-            const SizedBox(
-              height: 15,
-            ),
             Material(
               color: Colors.white,
               child: Padding(
