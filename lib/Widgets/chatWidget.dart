@@ -23,7 +23,7 @@ class ChatWidget extends StatelessWidget {
                 Icon(
                   chatIndex == 0
                       ? Icons.person // TODO add picture profile
-                      : Icons.android, // TODO @freedom715 😊
+                      : Icons.support_agent_outlined, // TODO @freedom715 😊
                 ),
                 const SizedBox(
                   width: 8,
