@@ -1,4 +1,5 @@
 import 'package:cinema_ai/Widgets/ButtonWidget.dart';
+import 'package:cinema_ai/pages/AboutAppPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -44,7 +45,12 @@ class InitialProfileStatePage extends StatelessWidget {
         const SizedBox(height: 8),
         ButtonWidget(
             text: 'О приложении',
-            onClick: () {},
+            onClick: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const AboutAppPage()),
+              );
+            },
             backgroundColor: const Color.fromARGB(255, 243, 243, 243)),
         const SizedBox(height: 8),
         ButtonWidget(
