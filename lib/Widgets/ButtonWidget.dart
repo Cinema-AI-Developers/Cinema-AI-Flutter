@@ -1,3 +1,4 @@
+import 'package:cinema_ai/Widgets/textWidget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -27,8 +28,8 @@ class ButtonWidget extends StatelessWidget {
         child: InkWell(
           borderRadius: BorderRadius.circular(12),
           child: Center(
-            child: Text(
-              text,
+            child: TextWidget(
+              label: text,
             ),
           ),
           onTap: () {
