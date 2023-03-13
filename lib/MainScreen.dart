@@ -1,5 +1,5 @@
 import 'package:cinema_ai/pages/HomePage.dart';
-import 'package:cinema_ai/pages/Profile.dart';
+import 'package:cinema_ai/pages/ProfilePage.dart';
 import 'package:cinema_ai/pages/ChatPage.dart';
 import 'package:cinema_ai/providers/PageIndexProvider.dart';
 import 'package:flutter/cupertino.dart';
@@ -10,7 +10,7 @@ import 'Widgets/BottomNav.dart';
 class MainScreen extends StatelessWidget {
   MainScreen({super.key});
 
-  List<Widget> pages = [HomePage(), Chat(), Profile()];
+  List<Widget> pages = [HomePage(), ChatPage(), ProfilePage()];
 
   @override
   Widget build(BuildContext context) {
