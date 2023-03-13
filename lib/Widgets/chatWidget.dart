@@ -35,9 +35,7 @@ class ChatWidget extends StatelessWidget {
                         )
                       : DefaultTextStyle(
                           style: const TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 18),
+                              color: Colors.black, fontSize: 18),
                           child: AnimatedTextKit(
                             isRepeatingAnimation: false,
                             repeatForever: false,
