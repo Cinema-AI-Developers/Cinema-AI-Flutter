@@ -10,14 +10,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
 
-class Chat extends StatefulWidget {
-  const Chat({super.key});
+class ChatPage extends StatefulWidget {
+  const ChatPage({super.key});
 
   @override
-  State<Chat> createState() => _ChatScreenState();
+  State<ChatPage> createState() => _ChatScreenState();
 }
 
-class _ChatScreenState extends State<Chat> {
+class _ChatScreenState extends State<ChatPage> {
   late ScrollController _listScrollController;
   bool _isTyping = false;
   late TextEditingController textEditingController;
