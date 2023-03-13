@@ -1,5 +1,6 @@
 import 'package:cinema_ai/Widgets/ButtonWidget.dart';
 import 'package:cinema_ai/pages/AboutAppPage.dart';
+import 'package:cinema_ai/providers/PageIndexProvider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,7 +21,7 @@ class ProfilePage extends StatelessWidget {
             return const SingleChildScrollView(
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 24),
-                child: InitialProfileStatePage(), // TODO add bloc
+                child: _InitialProfileStatePage(), // TODO add bloc
               ),
             );
           },
@@ -30,8 +31,8 @@ class ProfilePage extends StatelessWidget {
   }
 }
 
-class InitialProfileStatePage extends StatelessWidget {
-  const InitialProfileStatePage({Key? key}) : super(key: key);
+class _InitialProfileStatePage extends StatelessWidget {
+  const _InitialProfileStatePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -45,12 +46,13 @@ class InitialProfileStatePage extends StatelessWidget {
         const SizedBox(height: 8),
         ButtonWidget(
             text: 'О приложении',
-            onClick: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const AboutAppPage()),
-              );
-            },
+            onClick: () => {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const AboutAppPage()),
+                  ),
+                },
             backgroundColor: const Color.fromARGB(255, 243, 243, 243)),
         const SizedBox(height: 8),
         ButtonWidget(

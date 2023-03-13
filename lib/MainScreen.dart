@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'Widgets/BottomNav.dart';
+import 'pages/AboutAppPage.dart';
 
 class MainScreen extends StatelessWidget {
   MainScreen({super.key});
@@ -15,7 +16,6 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     int currentScreenIndex = context.watch<PageIndexProvider>().getCurrentIndex;
-
     return Scaffold(
       bottomNavigationBar: const BottomNav(),
       body: pages[currentScreenIndex],

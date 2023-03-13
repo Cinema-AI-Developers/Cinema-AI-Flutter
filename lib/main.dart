@@ -41,27 +41,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-class BigCard extends StatelessWidget {
-  const BigCard({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    var theme = Theme.of(context);
-    var style = theme.textTheme.displayMedium!.copyWith(
-      color: theme.colorScheme.onPrimary,
-      letterSpacing: 3,
-    );
-
-    return Card(
-      color: theme.colorScheme.secondary,
-      elevation: 10.2,
-      child: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Text('hi'),
-      ),
-    );
-  }
-}
