@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:cinema_ai/providers/ModelsProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -29,23 +30,33 @@ class SettingsPage extends StatelessWidget {
                     elevation: 0,
                     children: [
                       ListTile(
-                          title: const Text("Светлая"),
-                          onTap: () => Navigator.pop(context),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          trailing: const Icon(
-                              Icons.check_box) // TODO add theme changer
-                          ),
-                      const SizedBox(height: 8),
-                      ListTile(
-                        title: const Text("Тёмная"),
-                        onTap: () => Navigator.pop(context),
+                        title: const Text("Светлая"),
+                        onTap: () => {
+                          AdaptiveTheme.of(context).setLight(),
+                          Navigator.pop(context),
+                        },
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),
                         ),
-                        trailing: const Icon(Icons
-                            .check_box_outline_blank), // TODO add theme changer
+                        trailing: AdaptiveTheme.of(context).mode ==
+                                AdaptiveThemeMode.light
+                            ? const Icon(Icons.check_box)
+                            : const Icon(Icons.check_box_outline_blank),
+                      ),
+                      const SizedBox(height: 8),
+                      ListTile(
+                        title: const Text("Тёмная"),
+                        onTap: () => {
+                          AdaptiveTheme.of(context).setDark(),
+                          Navigator.pop(context),
+                        },
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        trailing: AdaptiveTheme.of(context).mode ==
+                                AdaptiveThemeMode.dark
+                            ? const Icon(Icons.check_box)
+                            : const Icon(Icons.check_box_outline_blank),
                       ),
                     ],
                   ),

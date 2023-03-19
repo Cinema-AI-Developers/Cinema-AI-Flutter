@@ -1,10 +1,10 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:cinema_ai/providers/ModelsProvider.dart';
 import 'package:cinema_ai/providers/PageIndexProvider.dart';
 import 'package:cinema_ai/providers/chatProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
-
 import 'MainScreen.dart';
 
 Future<void> main() async {
@@ -29,14 +29,23 @@ class MyApp extends StatelessWidget {
           create: (context) => ChatProvider(),
         ),
       ],
-      child: MaterialApp(
-        title: 'Cinema AI',
-        theme: ThemeData(
+      child: AdaptiveTheme(
+        light: ThemeData(
           useMaterial3: true,
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
+          colorScheme: const ColorScheme.light(),
         ),
-        home: MainScreen(),
-        debugShowCheckedModeBanner: false,
+        dark: ThemeData(
+          useMaterial3: true,
+          colorScheme: const ColorScheme.dark(),
+        ),
+        initial: AdaptiveThemeMode.light,
+        builder: (theme, darkTheme) => MaterialApp(
+          title: 'Cinema AI',
+          theme: theme,
+          darkTheme: darkTheme,
+          home: MainScreen(),
+          debugShowCheckedModeBanner: false,
+        ),
       ),
     );
   }

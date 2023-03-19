@@ -69,7 +69,6 @@ class _ChatScreenState extends State<ChatPage> {
               ),
             ],
             Material(
-              color: Colors.white,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(

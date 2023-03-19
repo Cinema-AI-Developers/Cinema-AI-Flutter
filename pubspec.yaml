@@ -39,6 +39,7 @@ dependencies:
   http: ^0.13.5
   flutter_dotenv: ^5.0.2
   animated_text_kit: ^4.2.2
+  adaptive_theme: ^3.2.0
   flutter_spinkit: ^5.1.0
   persistent_bottom_nav_bar: any
 dev_dependencies:
