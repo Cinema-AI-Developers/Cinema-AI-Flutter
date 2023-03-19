@@ -1,5 +1,6 @@
 import 'package:cinema_ai/Widgets/ButtonWidget.dart';
 import 'package:cinema_ai/pages/AboutAppPage.dart';
+import 'package:cinema_ai/pages/SettingsPage.dart';
 import 'package:cinema_ai/providers/PageIndexProvider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -40,25 +41,36 @@ class _InitialProfileStatePage extends StatelessWidget {
       children: [
         const SizedBox(height: 8),
         ButtonWidget(
-            text: 'Войти',
-            onClick: () {},
-            backgroundColor: const Color.fromARGB(255, 243, 243, 243)),
+          text: 'Войти',
+          onClick: () {},
+          backgroundColor: const Color.fromARGB(255, 243, 243, 243),
+        ),
         const SizedBox(height: 8),
         ButtonWidget(
-            text: 'О приложении',
-            onClick: () => {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const AboutAppPage()),
-                  ),
-                },
-            backgroundColor: const Color.fromARGB(255, 243, 243, 243)),
+          text: 'О приложении',
+          onClick: () => {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const AboutAppPage(),
+              ),
+            ),
+          },
+          backgroundColor: const Color.fromARGB(255, 243, 243, 243),
+        ),
         const SizedBox(height: 8),
         ButtonWidget(
-            text: 'Настройки',
-            onClick: () {},
-            backgroundColor: const Color.fromARGB(255, 243, 243, 243)),
+          text: 'Настройки',
+          onClick: () => {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const SettingsPage(),
+              ),
+            ),
+          },
+          backgroundColor: const Color.fromARGB(255, 243, 243, 243),
+        ),
       ],
     );
   }
