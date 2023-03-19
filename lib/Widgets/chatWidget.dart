@@ -43,7 +43,7 @@ class ChatWidget extends StatelessWidget {
                             totalRepeatCount: 0,
                             animatedTexts: [
                               TyperAnimatedText(msg.trim(),
-                                  speed: const Duration(milliseconds: 0)),
+                                  speed: const Duration(milliseconds: 5)),
                             ],
                           ),
                         ),
