@@ -40,8 +40,8 @@ class SettingsPage extends StatelessWidget {
                         ),
                         trailing: AdaptiveTheme.of(context).mode ==
                                 AdaptiveThemeMode.light
-                            ? const Icon(Icons.check_box)
-                            : const Icon(Icons.check_box_outline_blank),
+                            ? const Icon(Icons.radio_button_checked)
+                            : const Icon(Icons.radio_button_off),
                       ),
                       const SizedBox(height: 8),
                       ListTile(
@@ -55,8 +55,8 @@ class SettingsPage extends StatelessWidget {
                         ),
                         trailing: AdaptiveTheme.of(context).mode ==
                                 AdaptiveThemeMode.dark
-                            ? const Icon(Icons.check_box)
-                            : const Icon(Icons.check_box_outline_blank),
+                            ? const Icon(Icons.radio_button_checked)
+                            : const Icon(Icons.radio_button_off),
                       ),
                     ],
                   ),
@@ -89,8 +89,8 @@ class SettingsPage extends StatelessWidget {
                         trailing: Provider.of<ModelsProvider>(context)
                                     .getCurrentModel ==
                                 "gpt-3.5-turbo"
-                            ? const Icon(Icons.check_box)
-                            : const Icon(Icons.check_box_outline_blank),
+                            ? const Icon(Icons.radio_button_checked)
+                            : const Icon(Icons.radio_button_off),
                       ),
                       const SizedBox(height: 8),
                       ListTile(
@@ -106,8 +106,8 @@ class SettingsPage extends StatelessWidget {
                         trailing: Provider.of<ModelsProvider>(context)
                                     .getCurrentModel ==
                                 "text-davinci-003"
-                            ? const Icon(Icons.check_box)
-                            : const Icon(Icons.check_box_outline_blank),
+                            ? const Icon(Icons.radio_button_checked)
+                            : const Icon(Icons.radio_button_off),
                       ),
                     ],
                   ),
