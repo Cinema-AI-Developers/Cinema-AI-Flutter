@@ -1,7 +1,8 @@
-import 'package:cinema_ai/api/scheme/AppTextStyle.dart';
-import 'package:cinema_ai/api/scheme/ThemeColors.dart';
+import 'package:cinema_ai/scheme/AppTextStyle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import 'ThemeColors.dart';
 
 enum AppThemeType { light, dark }
 

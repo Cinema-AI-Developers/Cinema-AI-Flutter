@@ -1,5 +1,5 @@
 import 'package:cinema_ai/Widgets/textWidget.dart';
-import 'package:cinema_ai/api/scheme/AppTheme.dart';
+import 'package:cinema_ai/scheme/AppTheme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

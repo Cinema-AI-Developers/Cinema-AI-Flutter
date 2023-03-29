@@ -1,8 +1,8 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
-import 'package:cinema_ai/api/scheme/AppTheme.dart';
 import 'package:cinema_ai/providers/ModelsProvider.dart';
 import 'package:cinema_ai/providers/PageIndexProvider.dart';
 import 'package:cinema_ai/providers/chatProvider.dart';
+import 'package:cinema_ai/scheme/AppTheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';

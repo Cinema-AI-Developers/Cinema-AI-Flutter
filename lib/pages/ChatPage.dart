@@ -5,13 +5,14 @@ import 'package:cinema_ai/Widgets/TextWidgetDialog.dart';
 import 'package:cinema_ai/Widgets/textWidget.dart';
 import 'package:cinema_ai/api/AIResponse.dart';
 import 'package:cinema_ai/Widgets/chatWidget.dart';
-import 'package:cinema_ai/api/scheme/AppTheme.dart';
 import 'package:cinema_ai/providers/ModelsProvider.dart';
 import 'package:cinema_ai/providers/chatProvider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
+
+import '../scheme/AppTheme.dart';
 
 class ChatPage extends StatefulWidget {
   const ChatPage({super.key});
