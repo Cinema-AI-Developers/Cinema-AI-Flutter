@@ -1,4 +1,5 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:cinema_ai/api/scheme/AppTheme.dart';
 import 'package:cinema_ai/providers/ModelsProvider.dart';
 import 'package:cinema_ai/providers/PageIndexProvider.dart';
 import 'package:cinema_ai/providers/chatProvider.dart';
@@ -30,14 +31,8 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: AdaptiveTheme(
-        light: ThemeData(
-          useMaterial3: true,
-          colorScheme: const ColorScheme.light(),
-        ),
-        dark: ThemeData(
-          useMaterial3: true,
-          colorScheme: const ColorScheme.dark(),
-        ),
+        light: AppTheme.lightTheme,
+        dark: AppTheme.darkTheme,
         initial: AdaptiveThemeMode.light,
         builder: (theme, darkTheme) => MaterialApp(
           title: 'Cinema AI',

@@ -5,6 +5,7 @@ import 'package:cinema_ai/Widgets/TextWidgetDialog.dart';
 import 'package:cinema_ai/Widgets/textWidget.dart';
 import 'package:cinema_ai/api/AIResponse.dart';
 import 'package:cinema_ai/Widgets/chatWidget.dart';
+import 'package:cinema_ai/api/scheme/AppTheme.dart';
 import 'package:cinema_ai/providers/ModelsProvider.dart';
 import 'package:cinema_ai/providers/chatProvider.dart';
 import 'package:flutter/cupertino.dart';
@@ -76,9 +77,9 @@ class _ChatScreenState extends State<ChatPage> {
                       )),
             ),
             if (_isTyping) ...[
-              const Material(
-                color: Colors.white,
-                child: SpinKitThreeBounce(color: Colors.black, size: 18),
+              Material(
+                color: AppTheme.colors.background01,
+                child: SpinKitThreeBounce(size: 18),
               ),
             ],
             Material(
@@ -89,7 +90,6 @@ class _ChatScreenState extends State<ChatPage> {
                     Expanded(
                       child: TextField(
                         focusNode: focusNode,
-                        style: const TextStyle(color: Colors.black),
                         controller: textEditingController,
                         onSubmitted: (value) async {
                           await sendMessage(
@@ -98,9 +98,8 @@ class _ChatScreenState extends State<ChatPage> {
                           );
                         },
                         decoration: const InputDecoration.collapsed(
-                            hintText:
-                                "Меня зовут Дэвид. Как я могу помочь вам?",
-                            hintStyle: TextStyle(color: Colors.grey)),
+                          hintText: "Меня зовут Дэвид. Как я могу помочь вам?",
+                        ),
                       ),
                     ),
                     IconButton(

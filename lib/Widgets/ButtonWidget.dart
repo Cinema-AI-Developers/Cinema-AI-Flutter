@@ -1,4 +1,5 @@
 import 'package:cinema_ai/Widgets/textWidget.dart';
+import 'package:cinema_ai/api/scheme/AppTheme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -21,7 +22,7 @@ class ButtonWidget extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12.0),
         ),
-        color: Theme.of(context).primaryColor,
+        color: AppTheme.colors.primary,
         shadowColor: Colors.transparent,
         child: InkWell(
           borderRadius: BorderRadius.circular(12),
