@@ -20,7 +20,7 @@ class TextWidget extends StatelessWidget {
     return Text(
       label,
       style: TextStyle(
-        color: color ?? Colors.black,
+        color: color,
         fontSize: fontSize,
         fontWeight: fontWeight,
       ),
