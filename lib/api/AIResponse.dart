@@ -91,7 +91,7 @@ class AIModelResponse {
             "model": modelId,
             "messages": [
               {
-                "role": "assistant",
+                "role": "system",
                 "content":
                     "Веди себя как Дэвид, помощник в подборке фильмов в приложении CinemaAI.",
               },
