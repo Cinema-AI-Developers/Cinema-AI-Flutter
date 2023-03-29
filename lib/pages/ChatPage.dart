@@ -167,14 +167,9 @@ class _ChatScreenState extends State<ChatPage> {
       setState(() {});
     } catch (error) {
       log("$error");
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: TextWidget(
-            label: error.toString(),
-            color: Colors.white,
-          ),
-          backgroundColor: Colors.red,
-        ),
+      ErrorMessage.showSnackbar(
+        context,
+        error.toString(),
       );
     } finally {
       setState(
