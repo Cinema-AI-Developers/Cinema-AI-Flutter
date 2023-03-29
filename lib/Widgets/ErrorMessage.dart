@@ -9,7 +9,7 @@ class ErrorMessage {
           label: message,
           color: Colors.white,
         ),
-        backgroundColor: Colors.red,
+        backgroundColor: Theme.of(context).colorScheme.error,
       ),
     );
   }
