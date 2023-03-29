@@ -43,7 +43,6 @@ class _InitialProfileStatePage extends StatelessWidget {
         ButtonWidget(
           text: 'Войти',
           onClick: () {},
-          backgroundColor: const Color.fromARGB(255, 243, 243, 243),
         ),
         const SizedBox(height: 8),
         ButtonWidget(
@@ -56,7 +55,6 @@ class _InitialProfileStatePage extends StatelessWidget {
               ),
             ),
           },
-          backgroundColor: const Color.fromARGB(255, 243, 243, 243),
         ),
         const SizedBox(height: 8),
         ButtonWidget(
@@ -69,7 +67,6 @@ class _InitialProfileStatePage extends StatelessWidget {
               ),
             ),
           },
-          backgroundColor: const Color.fromARGB(255, 243, 243, 243),
         ),
       ],
     );

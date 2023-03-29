@@ -3,15 +3,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ButtonWidget extends StatelessWidget {
-  const ButtonWidget(
-      {Key? key,
-      required this.text,
-      required this.onClick,
-      required this.backgroundColor})
-      : super(key: key);
+  const ButtonWidget({
+    Key? key,
+    required this.text,
+    required this.onClick,
+  }) : super(key: key);
 
   final String text;
-  final Color backgroundColor;
   final Function onClick;
 
   @override
@@ -23,7 +21,7 @@ class ButtonWidget extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12.0),
         ),
-        color: backgroundColor,
+        color: Theme.of(context).primaryColor,
         shadowColor: Colors.transparent,
         child: InkWell(
           borderRadius: BorderRadius.circular(12),
