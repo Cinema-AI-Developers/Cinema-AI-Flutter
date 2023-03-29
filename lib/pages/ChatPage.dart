@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'package:cinema_ai/Models/ChatModel.dart';
+import 'package:cinema_ai/Widgets/ErrorMessage.dart';
 import 'package:cinema_ai/Widgets/textWidget.dart';
 import 'package:cinema_ai/api/AIResponse.dart';
 import 'package:cinema_ai/Widgets/chatWidget.dart';
@@ -121,27 +122,12 @@ class _ChatScreenState extends State<ChatPage> {
     required ChatProvider chatProvider,
   }) async {
     if (_isTyping) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: TextWidget(
-            label: "Подождите, пока запрос обработается 😃",
-            color: Colors.white,
-          ),
-          backgroundColor: Colors.red,
-        ),
-      );
+      ErrorMessage.showSnackbar(
+          context, "Подождите, пока запрос обработается 😃");
       return;
     }
     if (textEditingController.text.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: TextWidget(
-            label: "Пожалуйста, напишите сообщение 😊",
-            color: Colors.white,
-          ),
-          backgroundColor: Colors.red,
-        ),
-      );
+      ErrorMessage.showSnackbar(context, "Пожалуйста, напишите сообщение 😊");
       return;
     }
     try {
