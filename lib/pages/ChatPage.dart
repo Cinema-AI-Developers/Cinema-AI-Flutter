@@ -78,42 +78,40 @@ class _ChatScreenState extends State<ChatPage> {
                       )),
             ),
             if (_isTyping) ...[
-              Material(
-                color: AppTheme.colors.background01,
-                child: SpinKitThreeBounce(size: 18),
+              SpinKitThreeBounce(
+                size: 18,
+                color: AppTheme.colors.colorful05,
               ),
             ],
-            Material(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: TextField(
-                        focusNode: focusNode,
-                        controller: textEditingController,
-                        onSubmitted: (value) async {
-                          await sendMessage(
-                            modelsProvider: modelsProvider,
-                            chatProvider: chatProvider,
-                          );
-                        },
-                        decoration: const InputDecoration.collapsed(
-                          hintText: "Меня зовут Дэвид. Как я могу помочь вам?",
-                        ),
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: () async {
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      focusNode: focusNode,
+                      controller: textEditingController,
+                      onSubmitted: (value) async {
                         await sendMessage(
                           modelsProvider: modelsProvider,
                           chatProvider: chatProvider,
                         );
                       },
-                      icon: const Icon(Icons.send),
+                      decoration: const InputDecoration.collapsed(
+                        hintText: "Меня зовут Дэвид. Как я могу помочь вам?",
+                      ),
                     ),
-                  ],
-                ),
+                  ),
+                  IconButton(
+                    onPressed: () async {
+                      await sendMessage(
+                        modelsProvider: modelsProvider,
+                        chatProvider: chatProvider,
+                      );
+                    },
+                    icon: const Icon(Icons.send),
+                  ),
+                ],
               ),
             ),
           ],

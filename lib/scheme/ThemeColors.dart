@@ -10,8 +10,8 @@ class ThemeColors {
   Color get secondary => const Color(0xFFC25FFF);
 
   // Backgrounds
-  Color get background01 => const Color.fromARGB(255, 25, 28, 35);
-  Color get background02 => const Color.fromARGB(255, 14, 16, 20);
+  Color get background01 => const Color(0xFF191C23);
+  Color get background02 => const Color.fromARGB(255, 19, 21, 27);
   Color get background03 => const Color.fromARGB(255, 13, 14, 18);
 
   // Colorful

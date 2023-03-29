@@ -2,6 +2,7 @@ import 'package:cinema_ai/pages/HomePage.dart';
 import 'package:cinema_ai/pages/ProfilePage.dart';
 import 'package:cinema_ai/pages/ChatPage.dart';
 import 'package:cinema_ai/providers/PageIndexProvider.dart';
+import 'package:cinema_ai/scheme/AppTheme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
@@ -24,17 +25,17 @@ class MainScreen extends StatelessWidget {
       PersistentBottomNavBarItem(
         icon: const Icon(Icons.home),
         title: ("Главная"),
-        inactiveColorPrimary: Colors.grey,
+        inactiveColorPrimary: AppTheme.colors.primary,
       ),
       PersistentBottomNavBarItem(
         icon: const Icon(Icons.chat),
         title: ("Чат"),
-        inactiveColorPrimary: Colors.grey,
+        inactiveColorPrimary: AppTheme.colors.primary,
       ),
       PersistentBottomNavBarItem(
         icon: const Icon(Icons.settings),
         title: ("Профиль"),
-        inactiveColorPrimary: Colors.grey,
+        inactiveColorPrimary: AppTheme.colors.primary,
       ),
     ];
   }
@@ -49,14 +50,14 @@ class MainScreen extends StatelessWidget {
       screens: _buildScreens(),
       items: _navBarsItems(),
       confineInSafeArea: true,
-      backgroundColor: Colors.white,
+      backgroundColor: AppTheme.colors.background01,
       handleAndroidBackButtonPress: true,
       resizeToAvoidBottomInset: true,
       stateManagement: true,
       hideNavigationBarWhenKeyboardShows: true,
       decoration: NavBarDecoration(
         borderRadius: BorderRadius.circular(10.0),
-        colorBehindNavBar: Colors.white,
+        colorBehindNavBar: AppTheme.colors.background02,
       ),
       popAllScreensOnTapOfSelectedTab: true,
       popActionScreens: PopActionScreensType.all,

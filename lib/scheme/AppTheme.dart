@@ -23,12 +23,14 @@ class AppTheme {
     scaffoldBackgroundColor: darkThemeColors.background01,
     appBarTheme: AppBarTheme(
       titleSpacing: 24,
-      backgroundColor: darkThemeColors.background01,
+      backgroundColor: darkThemeColors.background02,
       shadowColor: Colors.transparent,
       titleTextStyle:
           AppTextStyle.title.copyWith(color: darkThemeColors.active),
       iconTheme: IconThemeData(color: darkThemeColors.active),
     ),
+    dialogBackgroundColor: darkThemeColors.background01,
+    cardColor: darkThemeColors.background01,
     bottomNavigationBarTheme:
         ThemeData.dark().bottomNavigationBarTheme.copyWith(
               type: BottomNavigationBarType.shifting,
@@ -50,7 +52,7 @@ class AppTheme {
       onPrimary: lightThemeColors.white,
       onSecondary: darkThemeColors.active,
       error: darkThemeColors.colorful07,
-    ),
+    ).copyWith(background: lightThemeColors.background01),
   );
 
   static final lightTheme = ThemeData.light().copyWith(
@@ -61,12 +63,14 @@ class AppTheme {
     scaffoldBackgroundColor: lightThemeColors.background01,
     appBarTheme: AppBarTheme(
       titleSpacing: 24,
-      backgroundColor: lightThemeColors.background01,
+      backgroundColor: lightThemeColors.background02,
       shadowColor: Colors.transparent,
       titleTextStyle:
           AppTextStyle.title.copyWith(color: lightThemeColors.active),
       iconTheme: IconThemeData(color: lightThemeColors.active),
     ),
+    dialogBackgroundColor: lightThemeColors.background01,
+    cardColor: lightThemeColors.background01,
     bottomNavigationBarTheme:
         ThemeData.light().bottomNavigationBarTheme.copyWith(
               type: BottomNavigationBarType.shifting,
