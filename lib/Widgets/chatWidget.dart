@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 
 class ChatWidget extends StatelessWidget {
-  ChatWidget({super.key, required this.msg, required this.chatIndex});
+  const ChatWidget({super.key, required this.msg, required this.chatIndex});
   final String msg;
   final int chatIndex;
   @override
