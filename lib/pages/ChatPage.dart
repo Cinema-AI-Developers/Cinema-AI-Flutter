@@ -80,7 +80,7 @@ class _ChatScreenState extends State<ChatPage> {
             if (_isTyping) ...[
               SpinKitThreeBounce(
                 size: 18,
-                color: AppTheme.colors.colorful05,
+                color: AppTheme.colors.colorful01,
               ),
             ],
             Padding(

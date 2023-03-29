@@ -1,4 +1,5 @@
 import 'package:cinema_ai/Widgets/textWidget.dart';
+import 'package:cinema_ai/scheme/AppTheme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
@@ -13,8 +14,8 @@ class ChatWidget extends StatelessWidget {
       children: [
         Material(
           color: chatIndex == 0
-              ? Colors.white
-              : const Color.fromARGB(255, 243, 243, 243),
+              ? AppTheme.colors.background01
+              : AppTheme.colors.background02,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
@@ -34,8 +35,7 @@ class ChatWidget extends StatelessWidget {
                           label: msg,
                         )
                       : DefaultTextStyle(
-                          style: const TextStyle(
-                              color: Colors.black, fontSize: 18),
+                          style: const TextStyle(fontSize: 18),
                           child: AnimatedTextKit(
                             isRepeatingAnimation: false,
                             repeatForever: false,
