@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:cinema_ai/Models/ChatModel.dart';
 import 'package:cinema_ai/Widgets/ErrorMessage.dart';
+import 'package:cinema_ai/Widgets/TextWidgetDialog.dart';
 import 'package:cinema_ai/Widgets/textWidget.dart';
 import 'package:cinema_ai/api/AIResponse.dart';
 import 'package:cinema_ai/Widgets/chatWidget.dart';
@@ -48,6 +49,17 @@ class _ChatScreenState extends State<ChatPage> {
       appBar: AppBar(
         elevation: 2,
         title: const Text("Чатик ^_____^"),
+        actions: [
+          IconButton(
+            onPressed: () async {
+              await showDialog(
+                context: context,
+                builder: (context) => const TextModelDialog(),
+              );
+            },
+            icon: const Icon(Icons.more_vert_rounded),
+          ),
+        ],
       ),
       body: SafeArea(
         child: Column(
