@@ -7,7 +7,6 @@ class ErrorMessage {
       SnackBar(
         content: TextWidget(
           label: message,
-          color: Colors.white,
         ),
         backgroundColor: Theme.of(context).colorScheme.error,
       ),
