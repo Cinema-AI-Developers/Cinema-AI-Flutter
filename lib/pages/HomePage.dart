@@ -16,7 +16,7 @@ class HomePage extends StatelessWidget {
         Uri.parse(
             'https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_250_BEST_FILMS&page=1'),
         headers: {
-          "X-API-KEY": dotenv.env['KINOPOISK_API'].toString(),
+          "X-API-KEY": dotenv.env['VITE_KINOPOISK_API'].toString(),
           'Accept': "application/json"
         }).then((data) => jsonDecode(data.body));
 
