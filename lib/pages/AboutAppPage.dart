@@ -9,7 +9,7 @@ class AboutAppPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 2,
+        elevation: 0,
         title: const Text("О приложении"),
       ),
       body: const SafeArea(

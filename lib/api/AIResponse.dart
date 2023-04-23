@@ -8,7 +8,6 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class AIModelResponse {
-  // @terro do we need this class here?
   static Future<List<AIModel>> getModel() async {
     try {
       var response = await http.get(
@@ -37,6 +36,7 @@ class AIModelResponse {
   static Future<List<ChatModel>> sendMessage(
       {required String message, required String modelId}) async {
     try {
+      log("modelId $modelId");
       var response = await http.post(
         Uri.parse("https://api.openai.com/v1/completions"),
         headers: {
@@ -91,7 +91,7 @@ class AIModelResponse {
             "model": modelId,
             "messages": [
               {
-                "role": "assistant",
+                "role": "system",
                 "content":
                     "Веди себя как Дэвид, помощник в подборке фильмов в приложении CinemaAI.",
               },

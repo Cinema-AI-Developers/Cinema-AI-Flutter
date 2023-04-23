@@ -1,5 +1,7 @@
 import 'dart:developer';
 import 'package:cinema_ai/Models/ChatModel.dart';
+import 'package:cinema_ai/Widgets/ErrorMessage.dart';
+import 'package:cinema_ai/Widgets/TextWidgetDialog.dart';
 import 'package:cinema_ai/Widgets/textWidget.dart';
 import 'package:cinema_ai/api/AIResponse.dart';
 import 'package:cinema_ai/Widgets/chatWidget.dart';
@@ -9,6 +11,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
+
+import '../scheme/AppTheme.dart';
 
 class ChatPage extends StatefulWidget {
   const ChatPage({super.key});
@@ -47,6 +51,17 @@ class _ChatScreenState extends State<ChatPage> {
       appBar: AppBar(
         elevation: 2,
         title: const Text("Чатик ^_____^"),
+        actions: [
+          IconButton(
+            onPressed: () async {
+              await showDialog(
+                context: context,
+                builder: (context) => const TextModelDialog(),
+              );
+            },
+            icon: const Icon(Icons.more_vert_rounded),
+          ),
+        ],
       ),
       body: SafeArea(
         child: Column(
@@ -63,45 +78,40 @@ class _ChatScreenState extends State<ChatPage> {
                       )),
             ),
             if (_isTyping) ...[
-              const Material(
-                color: Colors.white,
-                child: SpinKitThreeBounce(color: Colors.black, size: 18),
+              SpinKitThreeBounce(
+                size: 18,
+                color: AppTheme.colors.colorful01,
               ),
             ],
-            Material(
-              color: Colors.white,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: TextField(
-                        focusNode: focusNode,
-                        style: const TextStyle(color: Colors.black),
-                        controller: textEditingController,
-                        onSubmitted: (value) async {
-                          await sendMessage(
-                            modelsProvider: modelsProvider,
-                            chatProvider: chatProvider,
-                          );
-                        },
-                        decoration: const InputDecoration.collapsed(
-                            hintText:
-                                "Меня зовут Дэвид. Как я могу помочь вам?",
-                            hintStyle: TextStyle(color: Colors.grey)),
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: () async {
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      focusNode: focusNode,
+                      controller: textEditingController,
+                      onSubmitted: (value) async {
                         await sendMessage(
                           modelsProvider: modelsProvider,
                           chatProvider: chatProvider,
                         );
                       },
-                      icon: const Icon(Icons.send),
+                      decoration: const InputDecoration.collapsed(
+                        hintText: "Меня зовут Дэвид. Как я могу помочь вам?",
+                      ),
                     ),
-                  ],
-                ),
+                  ),
+                  IconButton(
+                    onPressed: () async {
+                      await sendMessage(
+                        modelsProvider: modelsProvider,
+                        chatProvider: chatProvider,
+                      );
+                    },
+                    icon: const Icon(Icons.send),
+                  ),
+                ],
               ),
             ),
           ],
@@ -122,27 +132,12 @@ class _ChatScreenState extends State<ChatPage> {
     required ChatProvider chatProvider,
   }) async {
     if (_isTyping) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: TextWidget(
-            label: "Подождите, пока запрос обработается 😃",
-            color: Colors.white,
-          ),
-          backgroundColor: Colors.red,
-        ),
-      );
+      ErrorMessage.showSnackbar(
+          context, "Подождите, пока запрос обработается 😃");
       return;
     }
     if (textEditingController.text.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: TextWidget(
-            label: "Пожалуйста, напишите сообщение 😊",
-            color: Colors.white,
-          ),
-          backgroundColor: Colors.red,
-        ),
-      );
+      ErrorMessage.showSnackbar(context, "Пожалуйста, напишите сообщение 😊");
       return;
     }
     try {
@@ -170,14 +165,9 @@ class _ChatScreenState extends State<ChatPage> {
       setState(() {});
     } catch (error) {
       log("$error");
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: TextWidget(
-            label: error.toString(),
-            color: Colors.white,
-          ),
-          backgroundColor: Colors.red,
-        ),
+      ErrorMessage.showSnackbar(
+        context,
+        error.toString(),
       );
     } finally {
       setState(
