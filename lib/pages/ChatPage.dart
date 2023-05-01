@@ -50,7 +50,7 @@ class _ChatScreenState extends State<ChatPage> {
     return Scaffold(
       appBar: AppBar(
         elevation: 2,
-        title: const Text("Чатик ^_____^"),
+        title: const Text("Чат"),
         actions: [
           IconButton(
             onPressed: () async {
